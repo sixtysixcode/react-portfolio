@@ -1,9 +1,13 @@
 import "./index.scss";
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faGithub} from "@fortawesome/free-brands-svg-icons";
-import { faDownload } from '@fortawesome/free-solid-svg-icons'
+import {faDownload} from '@fortawesome/free-solid-svg-icons'
+import Cv from "./Components/cv";
+import useScrollSnap from 'react-use-scroll-snap';
+import Skills from "./Components/Skills";
+import Map from "./Components/Map"
 
 const NavBar = styled.div`
   display: flex;
@@ -12,12 +16,25 @@ const NavBar = styled.div`
   align-items: center;
   position: fixed;
   width: 100%;
+  padding: 25px 10px 5px;
+  z-index: 1000;
+  background: transparent;
+  transition: 0.1s ease-in;
+  
+  &.scrolled {
+    background: white;
+    transition: 0.1s ease-in;
+    box-shadow: 0 0 4px 4px rgba(0,0,0,0.05);
+  }
 `
 
 const Header = styled.section`
+  position: relative;
   display: flex;
   flex-direction: row;
   height: calc(100vh - 20px);
+  width: 100vw;
+  justify-content: space-around;
 
   &:before {
     content: '';
@@ -34,6 +51,7 @@ const Header = styled.section`
     position: absolute;
     animation: bubbles 20s linear infinite both;
   }
+
   @keyframes bubbles {
     from {
       transform: translate();
@@ -69,16 +87,17 @@ const BigButton = styled.button`
   overflow: hidden;
   transition: 0.4s ease-out;
   gap: 5px;
-  
+
   &:hover {
     background: #e63946;
     color: white;
     transition: 0.2s ease-out;
   }
-  
+
   &.github {
     border: 1px solid black;
     color: black;
+
     &:hover {
       background: black;
       color: white;
@@ -87,6 +106,7 @@ const BigButton = styled.button`
 `
 
 const HeaderInfo = styled.div`
+  width: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -201,18 +221,47 @@ const Logo = styled.button`
   font-weight: bold;
   background: transparent;
   border: none;
+  margin-top: -16px;
+`
+
+const HeaderMap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  height: 100vh;
+`
+
+const HeaderMapWrapper = styled.div`
+  overflow: hidden;
+  height: 600px;
+  width: 600px;
+  border-radius: 100%;
 `
 
 function App() {
     const [currentTab, setCurrentTab] = useState('where');
+    const [pageScrolled, setPageScrolled] = useState(false);
+
+    const scrollRef = useRef(null);
+    useScrollSnap({ref: scrollRef, duration: 75, delay: 10});
 
     const changeTab = (tab) => {
         setCurrentTab(tab);
     }
 
+    const handleScroll = () => {
+        let scrolled = window.scrollY > 200;
+        setPageScrolled(scrolled);
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <div className="App">
-            <NavBar>
+            <NavBar className={pageScrolled ? "scrolled" : ""}>
                 <FlexRowBox>
                     <Logo>ALX</Logo>
                 </FlexRowBox>
@@ -228,17 +277,24 @@ function App() {
 
                 </FlexRowBox>
             </NavBar>
-            <Header>
-                <HeaderInfo>
-                    <h2>Hello, I'm Alex Barnes.</h2>
-                    <h1>Front-End Developer</h1>
-                    <p>Specialising in Javascript & UI Design</p>
-                    <ButtonRow className="ButtonRow">
-                        <BigButton className="github">Github<FontAwesomeIcon icon={faGithub} /></BigButton>
-                        <BigButton>CV<FontAwesomeIcon icon={faDownload} /></BigButton>
-                    </ButtonRow>
-                </HeaderInfo>
-            </Header>
+            <section ref={scrollRef}>
+                <Header>
+                    <HeaderInfo>
+                        <h2>Hello, I'm Alex Barnes.</h2>
+                        <h1>Front-End Developer</h1>
+                        <p>Specialising in Javascript & UI Design</p>
+                        <ButtonRow className="ButtonRow">
+                            <BigButton className="github">Github<FontAwesomeIcon icon={faGithub}/></BigButton>
+                            <BigButton>CV<FontAwesomeIcon icon={faDownload}/></BigButton>
+                        </ButtonRow>
+                    </HeaderInfo>
+                    <HeaderMap>
+                        <HeaderMapWrapper><Map/></HeaderMapWrapper>
+                    </HeaderMap>
+                </Header>
+                <Cv/>
+                <Skills/>
+            </section>
         </div>
     );
 }
