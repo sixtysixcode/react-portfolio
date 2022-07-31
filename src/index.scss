@@ -1,2 +1,15 @@
 $white: #ffffff;
 
+.App {
+  position: relative;
+}
+
+.background {
+  background-color: black;
+  bottom: -1200px;
+  left: 0;
+  height: 0;
+  width: 100vw;
+  position: absolute;
+  z-index: 0;
+}

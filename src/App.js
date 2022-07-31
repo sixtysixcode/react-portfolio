@@ -5,9 +5,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faGithub} from "@fortawesome/free-brands-svg-icons";
 import {faDownload} from '@fortawesome/free-solid-svg-icons'
 import Cv from "./Components/cv";
-import useScrollSnap from 'react-use-scroll-snap';
+// import useScrollSnap from 'react-use-scroll-snap';
 import Skills from "./Components/Skills";
-import Map from "./Components/Map"
 
 const NavBar = styled.div`
   display: flex;
@@ -232,19 +231,9 @@ const HeaderMap = styled.div`
   height: 100vh;
 `
 
-const HeaderMapWrapper = styled.div`
-  overflow: hidden;
-  height: 600px;
-  width: 600px;
-  border-radius: 100%;
-`
-
 function App() {
     const [currentTab, setCurrentTab] = useState('where');
     const [pageScrolled, setPageScrolled] = useState(false);
-
-    const scrollRef = useRef(null);
-    useScrollSnap({ref: scrollRef, duration: 75, delay: 10});
 
     const changeTab = (tab) => {
         setCurrentTab(tab);
@@ -277,7 +266,7 @@ function App() {
 
                 </FlexRowBox>
             </NavBar>
-            <section ref={scrollRef}>
+            <section>
                 <Header>
                     <HeaderInfo>
                         <h2>Hello, I'm Alex Barnes.</h2>
@@ -289,7 +278,8 @@ function App() {
                         </ButtonRow>
                     </HeaderInfo>
                     <HeaderMap>
-                        <HeaderMapWrapper><Map/></HeaderMapWrapper>
+
+
                     </HeaderMap>
                 </Header>
                 <Cv/>

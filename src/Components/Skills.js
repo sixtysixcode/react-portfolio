@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
@@ -9,6 +9,7 @@ import {
     faReact,
     faSass
 } from "@fortawesome/free-brands-svg-icons";
+// import { useInView } from 'react-intersection-observer'
 
 const SkillsContainer = styled.section`
   display: flex;
@@ -16,12 +17,14 @@ const SkillsContainer = styled.section`
   justify-content: flex-start;
   align-items: center;
   height: 100vh;
-  padding: 12vh 0;
+  padding: 8vh 0;
   gap: 40px;
-  
+  position: relative;
+
   h1 {
     font-size: 40px;
-    color: #e63946;
+    color: #edf2ff;
+    z-index:2;
   }
 `
 
@@ -44,12 +47,12 @@ const SkillsItem = styled.div`
   position: relative;
   cursor: pointer;
   transition: 0.2s ease-out;
-  
+
   svg {
     font-size: 40px;
     z-index: 2;
   }
-  
+
   &:before {
     z-index: 1;
     content: "";
@@ -68,7 +71,7 @@ const SkillsItem = styled.div`
       opacity: 0.2;
     }
   }
-  
+
   &.active {
     margin-top: -50px;
     transition: 0.2s ease-out;
@@ -85,7 +88,7 @@ const SkillsItem = styled.div`
       }
     }
   }
-  
+
 `
 
 const SkillsText = styled.div`
@@ -101,6 +104,24 @@ const SkillsText = styled.div`
 
 const Skills = () => {
     const [activeItem, setActiveItem] = useState("js");
+    // const [isInView, setIsInView] = useState(false);
+    // const [ref, inView, entry] = useInView({
+    //     /* Optional options */
+    //     threshold: 0,
+    // })
+    const [scrollY, setScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(window.scrollY);
+        };
+        handleScroll();
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     const text = useMemo(() => {
         let text = "js";
@@ -120,6 +141,7 @@ const Skills = () => {
 
     return (
         <SkillsContainer>
+            <div className="background" style={{height: scrollY}}/>
             <h1>Skills</h1>
             <SkillsRow>
                 <SkillsItem className={activeItem === "js" ? "active" : ""} onClick={() => setActiveItem("js")}>

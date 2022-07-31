@@ -8,11 +8,12 @@ const CvContainer = styled.section`
   justify-content: flex-start;
   align-items: center;
   height: 150vh;
-  padding: 12vh 0 8vh;
-  
+  padding: 12vh 0 4vh;
+
   img {
     height: 150vh;
     box-shadow: 0 0 4px 4px rgba(0,0,0,0.05);
+    z-index: 2;
   }
 `
 
