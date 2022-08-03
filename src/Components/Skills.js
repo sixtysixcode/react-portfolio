@@ -153,7 +153,8 @@ const Skills = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrollY(window.scrollY);
+            const scroll = window.scrollY - 1200;
+            setScrollY(scroll);
         };
         handleScroll();
 

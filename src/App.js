@@ -1,11 +1,12 @@
 import "./index.scss";
-import React, {useState, useRef, useEffect, useMemo} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faGithub} from "@fortawesome/free-brands-svg-icons";
 import {faDownload} from '@fortawesome/free-solid-svg-icons'
 import Cv from "./Components/cv";
 import Skills from "./Components/Skills";
+import Footer from "./Components/Footer";
 
 const NavBar = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ const NavBar = styled.div`
   align-items: center;
   position: fixed;
   width: 100%;
-  padding: 25px 10px 5px;
+  padding: 25px 0 5px;
   z-index: 1000;
   
   &.scrolled {
@@ -37,7 +38,7 @@ const Header = styled.section`
   flex-direction: row;
   height: calc(100vh - 20px);
   width: 100vw;
-  justify-content: space-around;
+  justify-content: center;
 
   &:before {
     content: '';
@@ -72,9 +73,10 @@ const ButtonRow = styled.div`
   align-items: center;
   transition: 0.5s ease-in-out;
   margin-top: 20px;
+  width: 100%;
 `
 
-const BigButton = styled.button`
+export const BigButton = styled.button`
   width: 6.5rem;
   height: 2.5rem;
   border-radius: 25px;
@@ -225,6 +227,9 @@ const Logo = styled.button`
   background: transparent;
   border: none;
   margin-top: -16px;
+  position: absolute;
+  left: 25px;
+  top: 45px;
 `
 
 const HeaderMap = styled.div`
@@ -233,6 +238,17 @@ const HeaderMap = styled.div`
   align-items: center;
   width: 60vw;
   height: 100vh;
+`
+
+export const FooterBigButton = styled(BigButton)`
+   color: white;
+  width: auto;
+  height: auto;
+  border: none;
+  
+  svg {
+    color: #e63946;
+  }
 `
 
 function App() {
@@ -301,6 +317,7 @@ function App() {
                 </Header>
                 <Cv/>
                 <Skills/>
+                <Footer/>
             </section>
         </div>
     );

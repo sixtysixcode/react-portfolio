@@ -7,14 +7,20 @@ $white: #ffffff;
 body {
   background: url("./Assets/bg-lightpink.svg") repeat-y;
   overflow-x: hidden;
+  position: relative;
 }
 
 .background {
-  background: url("./Assets/bg-pattern-blue_3.svg") repeat-y;
-  bottom: -1200px;
+  background: url("./Assets/bg-pattern-blue_3.svg") center;
+  bottom: 0;
   left: 0;
   height: 0;
-  width: 100vw;
+  width: 110%;
   position: absolute;
   z-index: 0;
+  background-size: cover;
+}
+
+.footer {
+  background: darken(#122144, 15%);
 }
