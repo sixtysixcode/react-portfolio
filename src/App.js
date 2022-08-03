@@ -40,30 +40,30 @@ const Header = styled.section`
   width: 100vw;
   justify-content: center;
 
-  &:before {
-    content: '';
-    pointer-events: none;
-    opacity: 1;
-    background: radial-gradient(circle at 20% 35%, transparent 0, transparent 2px, black 3px, black 4px, transparent 4px),
-    radial-gradient(circle at 75% 44%, transparent 0, transparent 2px, black 3px, black 4px, transparent 4px),
-    radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, black 5px, black 6px, transparent 6px);
+  //&:before {
+  //  content: '';
+  //  pointer-events: none;
+  //  opacity: 1;
+  //  background: radial-gradient(circle at 20% 35%, transparent 0, transparent 2px, black 3px, black 4px, transparent 4px),
+  //  radial-gradient(circle at 75% 44%, transparent 0, transparent 2px, black 3px, black 4px, transparent 4px),
+  //  radial-gradient(circle at 46% 52%, transparent 0, transparent 4px, black 5px, black 6px, transparent 6px);
+  //
+  //  width: 100%;
+  //  height: 300%;
+  //  top: 0;
+  //  left: 0;
+  //  position: absolute;
+  //  animation: bubbles 20s linear infinite both;
+  //}
 
-    width: 100%;
-    height: 300%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    animation: bubbles 20s linear infinite both;
-  }
-
-  @keyframes bubbles {
-    from {
-      transform: translate();
-    }
-    to {
-      transform: translate(0, -66.666%);
-    }
-  }
+  //@keyframes bubbles {
+  //  from {
+  //    transform: translate();
+  //  }
+  //  to {
+  //    transform: translate(0, -66.666%);
+  //  }
+  //}
 `
 
 const ButtonRow = styled.div`
