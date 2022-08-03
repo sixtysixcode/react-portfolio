@@ -9,7 +9,6 @@ import {
     faReact,
     faSass
 } from "@fortawesome/free-brands-svg-icons";
-// import { useInView } from 'react-intersection-observer'
 
 const SkillsContainer = styled.section`
   display: flex;
@@ -51,6 +50,7 @@ const SkillsItem = styled.div`
   svg {
     font-size: 40px;
     z-index: 2;
+    color: white;
   }
 
   &:before {
@@ -68,7 +68,7 @@ const SkillsItem = styled.div`
   &:hover {
     &:before {
       background: #e63946;
-      opacity: 0.2;
+      opacity: 0.6;
     }
   }
 
@@ -77,9 +77,6 @@ const SkillsItem = styled.div`
     transition: 0.2s ease-out;
     &:before {
       background: #e63946;
-    }
-    svg {
-      color: white;
     }
     &:hover {
       &:before {
@@ -104,11 +101,6 @@ const SkillsText = styled.div`
 
 const Skills = () => {
     const [activeItem, setActiveItem] = useState("js");
-    // const [isInView, setIsInView] = useState(false);
-    // const [ref, inView, entry] = useInView({
-    //     /* Optional options */
-    //     threshold: 0,
-    // })
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {

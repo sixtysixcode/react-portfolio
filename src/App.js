@@ -1,11 +1,10 @@
 import "./index.scss";
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useMemo} from 'react';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faGithub} from "@fortawesome/free-brands-svg-icons";
 import {faDownload} from '@fortawesome/free-solid-svg-icons'
 import Cv from "./Components/cv";
-// import useScrollSnap from 'react-use-scroll-snap';
 import Skills from "./Components/Skills";
 
 const NavBar = styled.div`
@@ -17,13 +16,18 @@ const NavBar = styled.div`
   width: 100%;
   padding: 25px 10px 5px;
   z-index: 1000;
-  background: transparent;
-  transition: 0.1s ease-in;
   
   &.scrolled {
     background: white;
     transition: 0.1s ease-in;
     box-shadow: 0 0 4px 4px rgba(0,0,0,0.05);
+  }
+  &.darker {
+    background: transparent;
+    
+    svg, button {
+      color: white;
+    }
   }
 `
 
@@ -234,23 +238,36 @@ const HeaderMap = styled.div`
 function App() {
     const [currentTab, setCurrentTab] = useState('where');
     const [pageScrolled, setPageScrolled] = useState(false);
+    const [darker, setDarker] = useState(false);
 
     const changeTab = (tab) => {
         setCurrentTab(tab);
     }
 
     const handleScroll = () => {
-        let scrolled = window.scrollY > 200;
+        let scrolled = window.scrollY > 0;
+        let darker = window.scrollY > 2455;
         setPageScrolled(scrolled);
+        setDarker(darker);
     }
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
     }, []);
 
+    const classNames = useMemo(() => {
+        let c = "";
+        if(pageScrolled && !darker){
+            c = "scrolled";
+        } else if(pageScrolled && darker){
+            c = "darker";
+        }
+        return c;
+    }, [pageScrolled, darker]);
+
     return (
         <div className="App">
-            <NavBar className={pageScrolled ? "scrolled" : ""}>
+            <NavBar className={classNames}>
                 <FlexRowBox>
                     <Logo>ALX</Logo>
                 </FlexRowBox>
