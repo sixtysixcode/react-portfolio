@@ -246,7 +246,7 @@ function App() {
 
     const handleScroll = () => {
         let scrolled = window.scrollY > 0;
-        let darker = window.scrollY > 2420;
+        let darker = window.scrollY > 2200;
         setPageScrolled(scrolled);
         setDarker(darker);
     }
