@@ -4,8 +4,13 @@ $white: #ffffff;
   position: relative;
 }
 
+body {
+  background: url("./Assets/bg-lightpink.svg") repeat-y;
+  overflow-x: hidden;
+}
+
 .background {
-  background-color: darken(#edf2ff, 90%);
+  background: url("./Assets/bg-pattern-blue_3.svg") repeat-y;
   bottom: -1200px;
   left: 0;
   height: 0;

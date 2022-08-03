@@ -92,12 +92,59 @@ const SkillsItem = styled.div`
 const SkillsText = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: #e1e9fc;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
   height: 200px;
   margin: 50px 0;
-  width: 60%;]
-  color: #122144;
+  width: 60%;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: left;
+`
+
+const SkillsCode = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #0a0a0a;
+  color: #edf2ff;
+  padding: 40px 20px 20px;
+  border-radius: 4px;
+  justify-content: flex-start;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+`
+
+const SkillsCodeHeader = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #282c34;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 6px 10px;
+  
+  span {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #73c54d;
+    
+    &:nth-of-type(1){
+      background: #c45a58;
+    }
+    &:nth-of-type(2){
+      background: #edbb3f;
+    }
+  }
 `
 
 const Skills = () => {
@@ -117,17 +164,20 @@ const Skills = () => {
     }, []);
 
     const text = useMemo(() => {
-        let text = "js";
+        let text = "Over 7 years experience writing Javascript, started with Vanilla Javascript but also have experience with jQuery and Typescript.";
         if(activeItem === "react"){
-            text = "react";
+            text = "Two years experience using the React framework, paired with Redux for state management. " +
+                "Learning React has opened a whole new realm of possibilities when it comes to building modern user interfaces that 'react' (I am so sorry) instantaneously - " +
+                "resulting in a smoother experience for the user.";
         } else if(activeItem === "css"){
-            text = "css";
+            text = "A strong core understanding of CSS has been essential to meeting design goals throughout my career so far. " +
+                "Despite using component libraries with React in the past two years, I still rely heavily on my ability to tie elements together and solve styling issues manually.";
         } else if(activeItem === "sass"){
-            text = "sass";
+            text = "I prefer to write styling using SASS - an extension of CSS which allows for functionality such as variables, loops and other useful tools.";
         } else if(activeItem === "python"){
-            text = "python";
+            text = "Experience with Django and other Python based back ends.";
         }else if(activeItem === "github"){
-            text = "github";
+            text = "Git has always been my first choice when it comes to version control.";
         }
         return text;
     }, [activeItem]);
@@ -157,7 +207,21 @@ const Skills = () => {
                 </SkillsItem>
             </SkillsRow>
             <SkillsText>
-                <p>{text}</p>
+                <SkillsCode>
+                    <SkillsCodeHeader>
+                        <span/>
+                        <span/>
+                        <span/>
+                    </SkillsCodeHeader>
+                    dev@alx ~ % {text}
+                    {activeItem === "github" &&
+                        <>
+                    <span>dev@alx ~ % git add -u</span>
+                    <span>dev@alx ~ % git commit -m 'Great Choice'</span>
+                    <span>dev@alx ~ % git push -u origin alex/barnes</span>
+                    </>
+                    }
+                </SkillsCode>
             </SkillsText>
         </SkillsContainer>
     )
