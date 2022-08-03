@@ -17,6 +17,7 @@ const SkillsContainer = styled.section`
   align-items: center;
   height: 100vh;
   padding: 8vh 0;
+  margin-top: 20vh;
   gap: 40px;
   position: relative;
 
