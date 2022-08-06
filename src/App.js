@@ -7,6 +7,7 @@ import {faDownload} from '@fortawesome/free-solid-svg-icons'
 import Cv from "./Components/cv";
 import Skills from "./Components/Skills";
 import Footer from "./Components/Footer";
+import Contact from "./Components/Contact";
 
 const NavBar = styled.div`
   display: flex;
@@ -289,11 +290,11 @@ function App() {
                 </FlexRowBox>
                 <FlexRowBox>
                     <MainButton className={currentTab === 'where' ? "active" : ""}
-                                onClick={() => changeTab('where')}>WHERE</MainButton>
+                                onClick={() => changeTab('where')}>CV</MainButton>
                     <MainButton className={currentTab === 'why' ? "active" : ""}
-                                onClick={() => changeTab('why')}>WHY</MainButton>
+                                onClick={() => changeTab('why')}>SKILLS</MainButton>
                     <MainButton className={currentTab === 'how' ? "active" : ""}
-                                onClick={() => changeTab('how')}>HOW</MainButton>
+                                onClick={() => changeTab('how')}>CONTACT</MainButton>
                 </FlexRowBox>
                 <FlexRowBox>
 
@@ -317,6 +318,7 @@ function App() {
                 </Header>
                 <Cv/>
                 <Skills/>
+                <Contact/>
                 <Footer/>
             </section>
         </div>

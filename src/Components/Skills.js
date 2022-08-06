@@ -15,8 +15,8 @@ const SkillsContainer = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 100vh;
-  padding: 8vh 0;
+  height: 80vh;
+  padding: 8vh 0 0;
   margin-top: 20vh;
   gap: 40px;
   position: relative;
@@ -149,20 +149,6 @@ const SkillsCodeHeader = styled.div`
 
 const Skills = () => {
     const [activeItem, setActiveItem] = useState("js");
-    const [scrollY, setScrollY] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const scroll = window.scrollY - 1200;
-            setScrollY(scroll);
-        };
-        handleScroll();
-
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
 
     const text = useMemo(() => {
         let text = "Over 7 years experience writing Javascript, started with Vanilla Javascript but also have experience with jQuery and Typescript.";
@@ -185,7 +171,6 @@ const Skills = () => {
 
     return (
         <SkillsContainer>
-            <div className="background" style={{height: scrollY}}/>
             <h1>Skills</h1>
             <SkillsRow>
                 <SkillsItem className={activeItem === "js" ? "active" : ""} onClick={() => setActiveItem("js")}>
